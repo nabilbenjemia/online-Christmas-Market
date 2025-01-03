@@ -1,16 +1,22 @@
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class Vendor {
 
-    private Map<Product, Integer> productList;
+    //A vendor can log in, add products
+    //todo viewInventory
+    //todo set reserved
+
+    //changing from Map<Product, Integer> to ap<ProductType, ProductStock>
+    private Map<ProductType, List<Product>> productsMap;
     private String username;
 
     private final String password;
 
-    //private ProductFactory productFactory;
+    private ProductFactory productFactory;
 
     private boolean isLoggedIn;
 
@@ -22,14 +28,14 @@ public class Vendor {
         this.username = username;
         this.password = password;
         this.marketSystem = marketSystem;
-        this.productList = new HashMap<>();
-        //this.productFactory = new ProductFactory();
+        this.productsMap = new HashMap<>();
+        this.productFactory = new ProductFactory();
         this.isLoggedIn = false;
     }
 
 
 
-
+    //todo statistics
     public void trackSales() {
 
     }
@@ -44,24 +50,27 @@ public class Vendor {
         this.username = username;
     }
 
-    /* 
+    //todo adding the same type
     public void produceGoods(ProductType type, int amount) {
-        for(int i=0; i<amount; i++) {
+        List<Product> productList = new LinkedList<>();
+        for (int i = 0; i < amount; i++) {
             Product product = productFactory.createChristmasProduct(type, this);
-            productList.put(product, amount);
+            productList.add(product);
         }
+            productsMap.put(type, productList);
 
     }
-*/
+
     @Override
     public String toString() {
         return "Vendor{" +
                 "name='" + username + '\'' +
-                ", total products= " + productList.size() +'\'' +
+                ", types= " + productsMap.size() +'\'' +
                 //"productList=" + productList +
         '}';
     }
 
+    /*
     public void register() {
         marketSystem.registerVendor(this);
     }
@@ -77,7 +86,40 @@ public class Vendor {
         return isLoggedIn? username + " is logged in succesfully": "NOT logged in successfully";
     }
 
+    public void logout() {
+        isLoggedIn = false;
+    }
+*/
     public String getPassword() {
         return password;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    //todo maybe move it to ShoppingCart
+    public boolean CheckAvailability(ProductType type, int amount) {
+        int availableAmount = 0;
+        if (productsMap.containsKey(type)) {
+            for (Product product: productsMap.get(type)) {
+                if (!product.isReserved()) {
+                    availableAmount++;
+                }
+                if (availableAmount >= amount) {
+                    return true;
+                }
+            }
+            return availableAmount >= amount;
+        }
+        return false;
+    }
+
+    public Map<ProductType, List<Product>> getProductsMap() {
+        return productsMap;
     }
 }
