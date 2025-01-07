@@ -1,6 +1,6 @@
 public class ProductFactory {
 
-    public Product createChristmasProduct(ProductType type, Vendor vendor) {
+    public Product createChristmasProduct(String type, Vendor vendor) {
         //todo
         return null;
     }

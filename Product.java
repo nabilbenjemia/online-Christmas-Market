@@ -1,10 +1,11 @@
+
 public abstract class Product {
     //A product has a type, a price, and a vendor
-    private ProductType type;
+    private String type;
     private double price;
     private Vendor vendor;
     private boolean isReserved;
-    public Product(ProductType type, double price, Vendor vendor) {
+    public Product(String type, double price, Vendor vendor) {
         this.type = type;
         this.price = price;
         this.vendor = vendor;
@@ -41,7 +42,7 @@ public abstract class Product {
         return vendor;
     }
 
-    public ProductType getType() {
+    public String getType() {
         return type;
     }
 

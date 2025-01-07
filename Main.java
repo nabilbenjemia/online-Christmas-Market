@@ -14,10 +14,10 @@ public final class Main {
 
         MarketSystem marketSystem = new MarketSystem();
         Vendor vendor = new Vendor("stand01", "1234", marketSystem);
-        vendor.produceGoods(ProductType.ChristmasSweater, 3);
-        vendor.produceGoods(ProductType.ChristmasLights, 2);
+        vendor.produceGoods("ChristmasSweater", 3);
+        vendor.produceGoods("ChristmasLights", 2);
         Vendor vendor2 = new Vendor("stand02", "12345", marketSystem);
-        vendor2.produceGoods(ProductType.ChristmasSouvenir, 7);
+        vendor2.produceGoods("ChristmasSouvenir", 7);
         Visitor visitor = new Visitor("Alex", "ilovemunich", marketSystem);
         marketSystem.registerVendor(vendor);
         marketSystem.registerVendor(vendor2);

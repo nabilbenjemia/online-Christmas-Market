@@ -11,7 +11,7 @@ public class Vendor {
     //todo set reserved
 
     //changing from Map<Product, Integer> to ap<ProductType, ProductStock>
-    private Map<ProductType, List<Product>> productsMap;
+    private Map<String, List<Product>> productsMap;
     private String username;
 
     private final String password;
@@ -51,7 +51,7 @@ public class Vendor {
     }
 
     //todo adding the same type
-    public void produceGoods(ProductType type, int amount) {
+    public void produceGoods(String type, int amount) {
         List<Product> productList = new LinkedList<>();
         for (int i = 0; i < amount; i++) {
             Product product = productFactory.createChristmasProduct(type, this);
@@ -103,7 +103,7 @@ public class Vendor {
     }
 
     //todo maybe move it to ShoppingCart
-    public boolean CheckAvailability(ProductType type, int amount) {
+    public boolean CheckAvailability(String type, int amount) {
         int availableAmount = 0;
         if (productsMap.containsKey(type)) {
             for (Product product: productsMap.get(type)) {
@@ -119,7 +119,7 @@ public class Vendor {
         return false;
     }
 
-    public Map<ProductType, List<Product>> getProductsMap() {
+    public Map<String, List<Product>> getProductsMap() {
         return productsMap;
     }
 }

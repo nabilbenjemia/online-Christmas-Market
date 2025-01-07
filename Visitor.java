@@ -27,7 +27,7 @@ public class Visitor {
     //todo check if quantity is available
     //add quantity (how many products?)
     public void addToCart(Product product, int amount) {
-        ProductType type = product.getType();
+        String type = product.getType();
         if (isLoggedIn) {
             Vendor vendor = product.getVendor();
             List<Product> availableProducts = vendor.getProductsMap().get(type);
