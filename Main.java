@@ -28,7 +28,6 @@ public final class Main {
         System.out.println();
         Vendor v1 = new Vendor("stand01", "1234", marketSystem);
 
-        
 
         System.out.println(visitor.getCartProducts());
         return;
