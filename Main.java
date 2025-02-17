@@ -1,3 +1,8 @@
+import src.Model.MarketSystem;
+import src.Model.Vendor;
+import src.Model.Visitor;
+import src.Model.Products.ChristmasSweater;
+
 public final class Main {
 
     private Main() {

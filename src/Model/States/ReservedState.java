@@ -1,4 +1,7 @@
-public class SoldState implements ProductState{
+package src.Model.States;
+import src.Model.Product;
+
+public class ReservedState implements ProductState{
     @Override
     public void reserve(Product product) {
         //not possible
@@ -6,7 +9,7 @@ public class SoldState implements ProductState{
 
     @Override
     public void sell(Product product) {
-        //not possible
+        product.setState(new SoldState());
     }
 
     @Override

@@ -1,21 +1,24 @@
-public class ReservedState implements ProductState{
+package src.Model.States;
+import src.Model.Product;
+
+public class AvailableState implements ProductState{
     @Override
     public void reserve(Product product) {
-        //not possible
+        product.setState(new ReservedState());
     }
 
     @Override
     public void sell(Product product) {
-        product.setState(new SoldState());
+        //can't sell a non reserved product
     }
 
     @Override
     public void cancel(Product product) {
-        product.setState(new AvailableState());
+        //nothing changes
     }
 
     @Override
     public boolean isAvailable(Product product) {
-        return false;
+        return true;
     }
 }

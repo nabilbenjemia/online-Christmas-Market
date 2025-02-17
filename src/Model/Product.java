@@ -1,3 +1,6 @@
+package src.Model;
+import src.Model.States.AvailableState;
+import src.Model.States.ProductState;
 
 public abstract class Product {
     //A product has a type, a price, and a vendor
@@ -5,11 +8,14 @@ public abstract class Product {
     private double price;
     private Vendor vendor;
     private boolean isReserved;
+    private ProductState state;
+
     public Product(String type, double price, Vendor vendor) {
         this.type = type;
         this.price = price;
         this.vendor = vendor;
         this.isReserved = false;
+        this.state = new AvailableState();
     }
 
     public void sell() {
@@ -52,5 +58,13 @@ public abstract class Product {
 
     public void setReserved(boolean reserved) {
         isReserved = reserved;
+    }
+
+    public void setState(ProductState state) {
+        this.state = state;
+    }
+
+    public ProductState getState() {
+        return state;
     }
 }

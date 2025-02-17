@@ -1,3 +1,4 @@
+package src.Model;
 
 import java.util.HashMap;
 import java.util.LinkedList;
