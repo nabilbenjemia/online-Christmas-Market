@@ -1,5 +1,5 @@
-package src.Model.States;
-import src.Model.Product;
+package nabil.prsnl.prjct.Controller.Model.States;
+import nabil.prsnl.prjct.Controller.Model.Product;
 
 public interface ProductState {
     void reserve(Product product);

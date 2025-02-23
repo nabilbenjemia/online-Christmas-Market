@@ -1,11 +1,8 @@
-package Model;
+package nabil.prsnl.prjct.Controller.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.*;
-import src.Model.Product;
-import src.Model.ProductFactory;
-import src.Model.MarketSystem;
 
 public class Vendor {
 

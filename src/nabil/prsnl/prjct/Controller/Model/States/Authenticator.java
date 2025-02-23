@@ -1,4 +1,4 @@
-package Model.States;
+package nabil.prsnl.prjct.Controller.Model.States;
 
 import java.util.HashMap;
 import java.util.Map;

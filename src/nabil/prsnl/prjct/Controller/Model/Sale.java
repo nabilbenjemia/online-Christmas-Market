@@ -1,4 +1,4 @@
-package Model;
+package nabil.prsnl.prjct.Controller.Model;
 
 import java.util.ArrayList;
 import java.util.List;

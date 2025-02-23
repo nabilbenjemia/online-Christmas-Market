@@ -1,10 +1,10 @@
-package src.Model;
+package nabil.prsnl.prjct.Controller.Model;
+import nabil.prsnl.prjct.Controller.Model.States.Authenticator;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
-import src.Model.Visitor;
-import src.Model.Vendor;
+
 
 @Service
 public class MarketSystem {

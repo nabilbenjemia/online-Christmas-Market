@@ -1,13 +1,10 @@
-package Controller;
+package nabil.prsnl.prjct.Controller;
 
+import nabil.prsnl.prjct.Controller.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import src.Model.Visitor;
-import src.Model.Vendor;
-import src.Model.Product;
-import src.Model.MarketSystem;
 
 import java.util.List;
 import java.util.Map;

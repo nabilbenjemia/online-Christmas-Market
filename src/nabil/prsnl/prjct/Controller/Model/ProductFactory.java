@@ -1,9 +1,10 @@
-package Model;
+package nabil.prsnl.prjct.Controller.Model;
 
-import src.Model.Product;
-import src.Model.Products.ChristmasLights;
-import src.Model.Products.ChristmasSweater;
+import nabil.prsnl.prjct.Controller.Model.Products.ChristmasLights;
+import nabil.prsnl.prjct.Controller.Model.Products.ChristmasSweater;
+
 public class ProductFactory {
+
 
     public Product createChristmasProduct(String type, Vendor vendor, String description, double price) {
         return switch (type) {

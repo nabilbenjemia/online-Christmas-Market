@@ -1,7 +1,7 @@
-package src.Model.States;
-import src.Model.Product;
+package nabil.prsnl.prjct.Controller.Model.States;
+import nabil.prsnl.prjct.Controller.Model.Product;
 
-public class ReservedState implements ProductState{
+public class SoldState implements ProductState{
     @Override
     public void reserve(Product product) {
         //not possible
@@ -9,7 +9,7 @@ public class ReservedState implements ProductState{
 
     @Override
     public void sell(Product product) {
-        product.setState(new SoldState());
+        //not possible
     }
 
     @Override

@@ -1,4 +1,4 @@
-package src.View;
+package nabil.prsnl.prjct.Controller.View;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
