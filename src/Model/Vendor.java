@@ -1,44 +1,71 @@
-package src.Model;
+package Model;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.*;
+import src.Model.Product;
+import src.Model.ProductFactory;
+import src.Model.MarketSystem;
 
 public class Vendor {
 
     //A vendor can log in, add products
     //todo viewInventory
-    //todo set reserved
-
     //changing from Map<Product, Integer> to ap<ProductType, ProductStock>
+    @JsonIgnore
     private Map<String, List<Product>> productsMap;
     private String username;
 
+    @JsonIgnore
     private final String password;
+
+    private String description;
 
     private ProductFactory productFactory;
 
     private boolean isLoggedIn;
 
-    private MarketSystem marketSystem;
+    private List<Sale> sales;
 
-
-
-    public Vendor(String username, String password, MarketSystem marketSystem) {
+    public Vendor(String username, String password, String description, MarketSystem marketSystem) {
         this.username = username;
         this.password = password;
-        this.marketSystem = marketSystem;
+        this.description = description;
+        this.sales = new ArrayList<>();
         this.productsMap = new HashMap<>();
         this.productFactory = new ProductFactory();
         this.isLoggedIn = false;
     }
 
-
+    public void addSale(Sale sale) {
+        sales.add(sale);
+    }
 
     //todo statistics
-    public void trackSales() {
 
+    public String getSales() {
+        String s = "";
+        for (Sale sale : sales) {
+            s += sale +"\n";
+        }
+        s += "Total Revenues= " + calculateTotalRevenue() + "€";
+        return s;
+    }
+
+    public double calculateTotalRevenue() {
+        double totalRevenue = 0;
+        for (Sale sale : sales) {
+            totalRevenue += sale.getTotal();
+        }
+        return totalRevenue;
+    }
+
+    public String printProducts() {
+        for (int i = 0; i < productsMap.size(); i++) {
+
+            List<Product> productList ;
+        }
+        return "";
     }
 
 
@@ -52,45 +79,20 @@ public class Vendor {
     }
 
     //todo adding the same type
-    public void produceGoods(String type, int amount) {
-        List<Product> productList = new LinkedList<>();
+    public boolean produceGoods(String type, String description, double price, int amount) {
+        List<Product> productList = productsMap.getOrDefault(type, new LinkedList<>());
         for (int i = 0; i < amount; i++) {
-            Product product = productFactory.createChristmasProduct(type, this);
-            productList.add(product);
-        }
-            productsMap.put(type, productList);
-
-    }
-
-    @Override
-    public String toString() {
-        return "Vendor{" +
-                "name='" + username + '\'' +
-                ", types= " + productsMap.size() +'\'' +
-                //"productList=" + productList +
-        '}';
-    }
-
-    /*
-    public void register() {
-        marketSystem.registerVendor(this);
-    }
-
-    public String login() {
-        List<Vendor> vendors = marketSystem.getVendors();
-        for (Vendor vendor: vendors) {
-            if (vendor.getUsername().equals(username) && vendor.getPassword().equals(password)) {
-                isLoggedIn = true;
-                break;
+            Product product = productFactory.createChristmasProduct(type, this, description, price);
+            if (product == null) {
+                return false;
             }
+            productList.add(product);
+
         }
-        return isLoggedIn? username + " is logged in succesfully": "NOT logged in successfully";
+        productsMap.put(type, productList);
+        return true;
     }
 
-    public void logout() {
-        isLoggedIn = false;
-    }
-*/
     public String getPassword() {
         return password;
     }
@@ -103,24 +105,48 @@ public class Vendor {
         return isLoggedIn;
     }
 
-    //todo maybe move it to ShoppingCart
-    public boolean CheckAvailability(String type, int amount) {
-        int availableAmount = 0;
-        if (productsMap.containsKey(type)) {
-            for (Product product: productsMap.get(type)) {
-                if (!product.isReserved()) {
-                    availableAmount++;
-                }
-                if (availableAmount >= amount) {
-                    return true;
-                }
-            }
-            return availableAmount >= amount;
-        }
-        return false;
-    }
-
     public Map<String, List<Product>> getProductsMap() {
         return productsMap;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    //todo PROBLEM HERE
+
+    //@JsonIgnore
+    public List<Product> getProducts() {
+        List<Product> allProducts = new ArrayList<>();
+        for (List<Product> productList : productsMap.values()) {
+            allProducts.addAll(productList); // Add each product list to the result
+        }
+        return allProducts;
+    }
+
+    public Map<Product, Integer> getProductsByType() {
+        Map<Product, Integer> productTypeCounts = new HashMap<>();
+        for (Map.Entry<String, List<Product>> entry : productsMap.entrySet()) {
+            productTypeCounts.put(entry.getValue().get(0), entry.getValue().size());
+        }
+        return productTypeCounts;
+    }
+
+    public Map<Product, Integer> getAvailableProductsByType() {
+        Map<Product, Integer> productTypeCounts = new HashMap<>();
+        for (Map.Entry<String, List<Product>> entry : productsMap.entrySet()) {
+            // Filter only available products
+            long availableCount = entry.getValue().stream()
+                    .filter(Product::isAvailable) // Filter out unavailable products
+                    .count();
+
+            // Only add to the map if there are available products
+            if (availableCount > 0) {
+                productTypeCounts.put(entry.getValue().get(0), (int) availableCount); // Assumes the first product in the list represents the product type
+            }
+        }
+        return productTypeCounts;
+    }
+
+
 }
