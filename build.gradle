@@ -1,3 +1,22 @@
+/*
+plugins {
+    id 'org.springframework.boot' version '3.0.0'
+    //id 'io.spring.dependency-management' version '1.0.11.RELEASE' // Updated dependency management plugin
+    //id 'java'
+}
+ */
+
+/*
+dependencies {
+    // Add dependencies here
+    //testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.3'
+    //testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.3'
+
+}
+ */
+
 plugins {
     id 'org.springframework.boot' version '3.0.0'  // Use the appropriate version of Spring Boot
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
@@ -12,7 +31,6 @@ compileJava.options.encoding = 'UTF-8'
 
 
 dependencies {
-    implementation 'org.testng:testng:7.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'

@@ -1,5 +1,6 @@
 package src;
 
+import nabil.project.Model.Vendor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import src.Model.Vendor;
+
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MarketControllerTest {
 
     private List<Vendor> vendors;
 
-    private static final String BASE_URL = "http://localhost:8080/market";
+    private static final String BASE_URL = "http://localhost:8081/market";
 
     @Test
     public void testRegisterAndGetVisitors() {
