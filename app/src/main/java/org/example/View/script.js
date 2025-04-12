@@ -685,7 +685,7 @@ function displayCart(cartData) {
             Type: ${item.type}, 
             Price: $${item.price}, 
             Description: ${item.description}, 
-            
+            State: ${item.state.type}
         `;
         ul.appendChild(li);
     });

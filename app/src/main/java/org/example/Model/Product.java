@@ -15,7 +15,7 @@ public abstract class Product {
 
     private String description;
 
-    @JsonIgnore
+
     private ProductState state;
     public Product(String type, Vendor vendor, String description, double price) {
         this.type = type;
