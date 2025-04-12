@@ -20,7 +20,7 @@ A RESTful architectural pattern was adopted to manage the interaction between th
 
 
 ## UML
-![UML Class Diagram](src/View/uml.png)
+![UML Class Diagram](uml.png)
 
 ## Usage instructions
 

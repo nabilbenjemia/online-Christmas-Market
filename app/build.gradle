@@ -3,12 +3,14 @@
  *
  * This generated file contains a sample Java application project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.13/userguide/building_java_projects.html in the Gradle documentation.
- * This project uses @Incubating APIs which are subject to change.
  */
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
     id 'application'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 repositories {
@@ -17,18 +19,14 @@ repositories {
 }
 
 dependencies {
+    // Use JUnit test framework.
+    testImplementation libs.junit
+
     // This dependency is used by the application.
     implementation libs.guava
-}
 
-testing {
-    suites {
-        // Configure the built-in test suite
-        test {
-            // Use JUnit4 test framework
-            useJUnit('4.13.2')
-        }
-    }
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -40,5 +38,5 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.App'
+    mainClass = 'org.example.MyApplication'
 }
