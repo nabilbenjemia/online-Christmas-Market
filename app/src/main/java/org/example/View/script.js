@@ -8,7 +8,10 @@ function registerVendor() {
 
 // Function for the visitor registration process (add your visitor handling code here)
 function exploreVisitor() {
-    document.getElementById('menu').style.display = 'none';
+    const allElements = document.body.children;
+    for (let element of allElements) {
+        element.style.display = 'none';
+    }
     document.getElementById('visitor-login-form').style.display = 'block';
 }
 
@@ -491,56 +494,6 @@ document.getElementById('next').addEventListener('click', () => {
 });
 
 
-//display vendor list
-const dummyVendorList = [
-    { name: "Vendor 1", description: "Handmade Christmas Ornaments" },
-    { name: "Vendor 2", description: "Gourmet Christmas Cookies" },
-    { name: "Vendor 3", description: "Christmas Sweaters and Apparel" },
-    { name: "Vendor 4", description: "Hot Chocolate and Mulled Wine" }
-];
-
-async function showVendorList() {
-    const vendorListDiv = document.getElementById("vendor-list");
-    const vendorListContainer = document.getElementById("vendor-list-container");
-
-    vendorListContainer.innerHTML = "";
-
-    try {
-        // Fetch the vendor list from the backend
-        const response = await fetch("http://localhost:8080/market/vendor/all", {
-            headers: { "Content-Type": "application/json" },
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch vendor list");
-        } else {
-            console.log("Response received:", response.status);
-        }
-
-        // Parse the JSON response
-        const vendorList = await response.json();
-
-        // Update the vendor list container with the fetched data
-
-        vendorList.forEach((vendor) => {
-            const listItem = document.createElement("li");
-            listItem.className = "vendor-item";
-            listItem.innerHTML = `<strong>${vendor.username}</strong>: ${
-                vendor.loggedIn ? "Online" : "Offline"
-            }`;
-            vendorListContainer.append(listItem);
-        });
-
-
-    } catch (error) {
-        console.error("Error retrieving vendor list:", error);
-        vendorListContainer.innerHTML = "<li>Error fetching vendor list</li>";
-    }
-
-    // Show the vendor list and hide the menu
-    document.getElementById("menu").style.display = "none";
-    vendorListDiv.style.display = "block";
-}
 
 
 
