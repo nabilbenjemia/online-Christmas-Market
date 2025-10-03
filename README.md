@@ -1,6 +1,6 @@
 # online-Christmas-Market
 
-## System description (max. 200 words)
+## System description
 
 This system represents a small online shopping platform where vendors and visitors interact with the system. Both parties must log in to perform certain tasks. The system employs the Factory and State design patterns to handle its functionality: the Factory pattern is used to produce goods from the vendor side, while the State pattern controls the state of each good, which can dynamically change (e.g., available, reserved, sold).
 
