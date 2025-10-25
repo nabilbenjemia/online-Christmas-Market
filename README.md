@@ -25,6 +25,7 @@ A RESTful architectural pattern was adopted to manage the interaction between th
 
 ## Usage instructions
 
-1. Run the server part: MyApplication
-2. Open view.html in a browser
-3. That's it
+1. Clone the project
+2. Run: ./gradlew botRun
+3. open http://localhost:8080/
+4. Enjoy!
