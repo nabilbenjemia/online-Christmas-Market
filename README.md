@@ -19,6 +19,7 @@ A RESTful architectural pattern was adopted to manage the interaction between th
 3. Guest Access:
 - Browse the market without logging in.
 
+<img width="1920" height="964" alt="grafik" src="https://github.com/user-attachments/assets/2ec7c5ab-8aed-4e94-abde-43dd3aaf61e1" />
 
 ## UML
 ![UML Class Diagram](uml.png)
