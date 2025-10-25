@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUM Christmas Market</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="menu" class="form-container">
+  <h1>🎄 Welcome to TUM Christmas Market 🎅</h1>
+  <p>Digitizing the holiday magic! Register as a vendor or explore as a visitor.</p>
+
+  <!-- Buttons for Vendor and Visitor -->
+  <button class="button" onclick="registerVendor()">Login as a Vendor</button>
+  <button class="button" onclick="exploreVisitor()">Explore as a Visitor</button>
+  <!--button class="button" onclick="showVendorList()">View Vendors</button-->
+  <button class="button" onclick="showVendorCarousel()">Explore as a Guest</button>
+    <br>
+    <img src="santa.png" alt="image of Santa">
+  </div>
+
+  <!-- Vendor Login Form -->
+  <div id="vendor-login-form" class="form-container" style="display: none;">
+    <h2>Vendor Login</h2>
+    <input type="text" id="vendor-id" placeholder="Vendor ID" required><br>
+    <input type="password" id="vendor-password" placeholder="Password" required><br>
+    <button onclick="loginAsVendor()">Login</button><br><br>
+    <p>Don't have an account?<br> <a href="#" onclick="createVendor()">Create a New Vendor</a></p>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <div id="vendor-register-form" class="form-container" style="display: none;">
+    <h2>Vendor Registration</h2>
+    <input type="text" id="registervendor-id" placeholder="Vendor ID" required><br>
+    <input type="password" id="registervendor-password" placeholder="Password" required><br>
+    <textarea id="registervendor-description" placeholder="Description" required></textarea><br>
+    <button onclick="registerAsVendor()">Register</button><br><br>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+
+
+  <!-- Visitor Login Form -->
+  <div id="visitor-login-form" class="form-container" style="display: none;">
+    <h2>Visitor Login</h2>
+    <input type="text" id="visitor-id" placeholder="Visitor ID" required><br>
+    <input type="password" id="visitor-password" placeholder="Password" required><br>
+    <button onclick="loginAsVisitor()">Login</button><br><br>
+    <p>Don't have an account? <a href="#" onclick="createVisitor()">Create a New Visitor</a></p>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <div id="visitor-register-form" class="form-container" style="display: none;">
+    <h2>Visitor Registration</h2>
+    <input type="text" id="registervisitor-id" placeholder="Visitor ID" required><br>
+    <input type="password" id="registervisitor-password" placeholder="Password" required><br>
+    <button onclick="registerAsVisitor()">Register</button><br><br>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <!-- Products -->
+  <div id="product-container" class="form-container" style="display: none;">
+    <!-- This will hold the products of the selected vendor -->
+  </div>
+
+  <div id="product-carousel-container" class="form-container" style="display: none;">
+    <h1>🎁 Explore Products from <span id="vendor-name"></span> 🎀</h1>
+    <div class="product-carousel"></div>
+    <!-- Navigation buttons -->
+    <button class="nav-btn" id="prev-product">Prev</button>
+    <button class="nav-btn" id="next-product">Next</button>
+    <button onclick="showVendorCarousel()">Back</button>
+  </div>
+
+
+  <!-- Vendor List -->
+  <div id="vendor-list" class="vendor-container" style="display: none;">
+    <h2>Vendor List</h2>
+    <ul id="vendor-list-container"></ul>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <!-- Vendor Carousel-->
+  <div id="vendor-carousel-container" class="form-container" style="display: none;">
+    <h1>🎄Explore our Markets!❄️</h1>
+    <div class="vendor-carousel" ></div>
+    <!-- Navigation buttons -->
+    <button class="nav-btn" id="prev">Prev</button>
+    <button class="nav-btn" id="next">Next</button>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+
+
+  <!-- Vendor Dashboard Page -->
+  <div id="vendor-dashboard" class="form-container" style="display: none;">
+    <h1>Welcome, <span id="current-vendor-name"></span>!</h1>
+    <div class="dashboard-buttons">
+      <button id="add-product-button">Add Product</button>
+      <button id="check-sales-button">Check Sales</button>
+      <button id="vendor-logout-button">Log Out</button>
+    </div>
+
+    <!-- Modal or Section to Add Product -->
+    <div id="add-product-section" style="display: none;">
+      <h2>Add a New Product</h2>
+      <form id="add-product-form">
+        <!--input type="text" id="product-name" placeholder="Product Name" required-->
+        <label for="product-namee"></label>
+        <select id="product-namee" required>
+          <option value="" >Select a product</option>
+          <option value="ChristmasLights">Christmas Lights</option>
+          <option value="ChristmasSouvenir">Christmas Souvenir</option>
+          <option value="ChristmasSweater">Christmas Sweater</option>
+          <!-- Add more options as needed -->
+        </select>
+        <br>
+        <textarea id="product-description" placeholder="Product Description" required></textarea><br>
+        <input type="number" id="product-amount" placeholder="Amount" min="1" max="200" required><br>
+        <input type="number" id="product-price" placeholder="Price (€)" min="0.01" step="any" required><br>
+        <button type="submit" onclick="addProducts()">Submit Product</button>
+      </form>
+    </div>
+
+    <!-- Sales Information Section -->
+    <div id="sales-section" style="display: none;">
+      <h2>Your Sales</h2>
+      <div id="sales-info">
+        <!-- This will display sales information -->
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------------------------------------>
+<!--visitorrr dasboard---------->
+  <div id="visitor-dashboard" class="form-container" style="display: none;">
+    <h1>Welcome, <span id="current-visitor-name"></span>!</h1>
+    <div class="dashboard-buttons">
+      <button class="button" onclick="showVendorCarousel()">View Vendors</button>
+      <button class="button" onclick="showCart()">View Cart</button>
+      <button class="button" id="visitor-logout-button">Log Out</button>
+    </div>
+    <div id="cartContainer" style="display: none;">
+      <!-- Cart items will be displayed here -->
+      <button class="button" onclick="showVisitorDashboard()">Back</button>
+    </div>
+  </div>
+
+
+
+
+  <div class="loader">
+  </div>
+  <div class="main">
+    <div class="initial-snow">
+    </div>
+  </div>
+
+
+
+
+
+
+  <footer id="footer">
+
+  © 2024 TUM Christmas Market. All rights reserved.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
