@@ -1,4 +1,5 @@
 # online-Christmas-Market
+<img width="1920" height="969" alt="grafik" src="https://github.com/user-attachments/assets/43febfc5-ad01-40ff-afac-cb5f1656aa0b" />
 
 ## System description
 
